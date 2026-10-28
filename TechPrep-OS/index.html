@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechPrep OS — Personal Habit & Career Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+
+<div class="app-layout" id="app">
+
+  <!-- SIDEBAR NAVIGATION -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-info">
+        <span class="brand-name">TechPrep OS</span>
+        <span class="brand-tag">Personal Career OS</span>
+      </div>
+    </div>
+
+    <div class="nav-section-label">TRACKERS &amp; ROADMAPS</div>
+    <nav class="nav-menu" id="main-nav">
+      <button class="nav-item is-active" data-view="today">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M18.36 5.64l-1.41 1.41"/></svg></span>
+        <span class="nav-text">Today Focus</span>
+        <span class="nav-badge" id="badge-today-pending">0</span>
+      </button>
+
+      <button class="nav-item" data-view="matrix">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <span class="nav-text">Monthly Spreadsheet</span>
+      </button>
+
+      <button class="nav-item" data-view="dsa">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></span>
+        <span class="nav-text">DSA Tracker</span>
+      </button>
+
+      <button class="nav-item" data-view="dev">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+        <span class="nav-text">Dev Roadmap</span>
+      </button>
+
+      <button class="nav-item" data-view="aiml">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg></span>
+        <span class="nav-text">AI / ML Tracker</span>
+      </button>
+
+      <button class="nav-item" data-view="cs">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></span>
+        <span class="nav-text">CS Fundamentals</span>
+      </button>
+
+      <button class="nav-item" data-view="comm">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="nav-text">Communication</span>
+      </button>
+
+      <button class="nav-item" data-view="gym">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6.5 6.5h11M6.5 17.5h11M4 9v6M20 9v6M2 11v2M22 11v2"/></svg></span>
+        <span class="nav-text">Gym &amp; Workout</span>
+      </button>
+
+      <button class="nav-item" data-view="projects">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span>
+        <span class="nav-text">Projects</span>
+      </button>
+
+      <button class="nav-item" data-view="internships">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+        <span class="nav-text">Internships</span>
+      </button>
+
+      <div class="nav-section-label">ANALYTICS &amp; GOALS</div>
+
+      <button class="nav-item" data-view="goals">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <span class="nav-text">Goals</span>
+      </button>
+
+      <button class="nav-item" data-view="calendar">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+        <span class="nav-text">Calendar</span>
+      </button>
+
+      <button class="nav-item" data-view="statistics">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></span>
+        <span class="nav-text">Statistics</span>
+      </button>
+
+      <button class="nav-item" data-view="settings">
+        <span class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
+        <span class="nav-text">Settings</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="theme-toggle-btn" id="theme-toggle">
+        <span class="theme-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></span>
+        <span id="theme-text">Dark Mode</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+
+    <!-- TOP HEADER BAR -->
+    <header class="top-bar">
+      <div class="top-bar-left">
+        <button class="mobile-toggle-btn" id="mobile-menu-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="date-selector">
+          <button class="date-nav-btn" id="prev-day-btn" title="Previous Day">‹</button>
+          <span class="current-date-display" id="active-date-display">Today, Sep 13</span>
+          <button class="date-nav-btn" id="next-day-btn" title="Next Day">›</button>
+          <button class="btn btn-sm btn-ghost" id="today-jump-head">Jump to Today</button>
+        </div>
+      </div>
+      <div class="top-bar-right">
+        <div class="quick-stat-badge">
+          <span class="qs-icon">🔥</span>
+          <span class="qs-label">Streak:</span>
+          <strong id="head-streak-val">0 Days</strong>
+        </div>
+        <div class="quick-stat-badge">
+          <span class="qs-icon">🧩</span>
+          <span class="qs-label">DSA:</span>
+          <strong id="head-dsa-val">0 Solved</strong>
+        </div>
+        <div class="quick-stat-badge">
+          <span class="qs-icon">⏱️</span>
+          <span class="qs-label">Study:</span>
+          <strong id="head-study-val">0.0 hrs</strong>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT VIEWS -->
+    <div class="view-container">
+
+      <!-- 1. TODAY FOCUS VIEW -->
+      <section class="view-panel is-active" id="view-today">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Daily Focus</span>
+            <h1 class="page-title">Today's Dashboard</h1>
+            <p class="page-subtitle">Track your daily habits, log study hours, and build consistency.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary" id="open-study-modal">+ Log Study Hours</button>
+            <button class="btn btn-primary" id="today-add-habit-btn">+ Add Custom Habit</button>
+          </div>
+        </div>
+
+        <!-- Metric Summary Bar -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="mc-icon text-accent">✅</div>
+            <div class="mc-data">
+              <span class="mc-title">Habits Done Today</span>
+              <div class="mc-value" id="today-habits-ratio">0 / 0</div>
+              <div class="mc-progress-bar"><div class="mc-fill" id="today-habits-fill" style="width: 0%"></div></div>
+            </div>
+            <span class="mc-pct" id="today-habits-pct">0%</span>
+          </div>
+
+          <div class="metric-card">
+            <div class="mc-icon text-blue">⏱️</div>
+            <div class="mc-data">
+              <span class="mc-title">Study Hours Solved</span>
+              <div class="mc-value" id="today-hours-val">0.0 hrs</div>
+              <span class="mc-subtext">Logged today</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="mc-icon text-orange">🔥</div>
+            <div class="mc-data">
+              <span class="mc-title">Current Streak</span>
+              <div class="mc-value" id="today-streak-val">0 Days</div>
+              <span class="mc-subtext" id="today-streak-sub">Longest: 0 Days</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="mc-icon text-green">📊</div>
+            <div class="mc-data">
+              <span class="mc-title">Monthly Average</span>
+              <div class="mc-value" id="today-month-avg">0%</div>
+              <span class="mc-subtext">Completion rate</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Habit Checklist Panel -->
+        <div class="panel-card">
+          <div class="panel-header">
+            <div>
+              <h2 class="panel-title">Preloaded Habit Checklist</h2>
+              <p class="panel-subtitle">Check off habits as you complete them. Zero default checks.</p>
+            </div>
+            <div class="filter-pills" id="habit-category-filters">
+              <button class="pill-btn is-active" data-cat="ALL">All</button>
+              <button class="pill-btn" data-cat="Coding">Coding</button>
+              <button class="pill-btn" data-cat="Learning">Learning</button>
+              <button class="pill-btn" data-cat="Career">Career</button>
+              <button class="pill-btn" data-cat="Communication">Communication</button>
+              <button class="pill-btn" data-cat="Fitness">Fitness</button>
+              <button class="pill-btn" data-cat="Mindfulness">Mindfulness</button>
+            </div>
+          </div>
+          <div class="habit-checklist" id="today-habit-list">
+            <!-- Habit items loaded dynamically -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 2. MONTHLY SPREADSHEET MATRIX -->
+      <section class="view-panel" id="view-matrix">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Spreadsheet View</span>
+            <h1 class="page-title">Monthly Habit Tracker Matrix</h1>
+            <p class="page-subtitle">Interactive spreadsheet view for all daily habits. Toggle any cell to update history.</p>
+          </div>
+          <div class="header-actions">
+            <div class="month-picker">
+              <button class="btn btn-icon" id="matrix-prev-month">‹</button>
+              <span class="month-picker-label" id="matrix-month-label">September 2026</span>
+              <button class="btn btn-icon" id="matrix-next-month">›</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card no-padding overflow-hidden">
+          <div class="matrix-wrapper">
+            <table class="spreadsheet-table" id="matrix-table">
+              <!-- Matrix JS generated -->
+            </table>
+          </div>
+        </div>
+
+        <div class="panel-card margin-top">
+          <h3 class="panel-title">Weekly Summary Breakdown</h3>
+          <div class="weekly-breakdown-grid" id="matrix-weekly-summary">
+            <!-- Weekly totals -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 3. DSA TRACKER -->
+      <section class="view-panel" id="view-dsa">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Algorithms &amp; Data Structures</span>
+            <h1 class="page-title">DSA Master Tracker</h1>
+            <p class="page-subtitle">21 Preloaded topics. Log solved problems manually and track topic progress.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="open-dsa-modal">+ Log Solved Problem</button>
+          </div>
+        </div>
+
+        <!-- DSA Overall Metrics -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="mc-icon text-accent">🧩</div>
+            <div class="mc-data">
+              <span class="mc-title">Total Solved</span>
+              <div class="mc-value" id="dsa-total-solved">0 Problems</div>
+              <span class="mc-subtext">Goal: 0 / 100</span>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-green">🟢</div>
+            <div class="mc-data">
+              <span class="mc-title">Easy Solved</span>
+              <div class="mc-value" id="dsa-easy-solved">0</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-orange">🟡</div>
+            <div class="mc-data">
+              <span class="mc-title">Medium Solved</span>
+              <div class="mc-value" id="dsa-medium-solved">0</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-red">🔴</div>
+            <div class="mc-data">
+              <span class="mc-title">Hard Solved</span>
+              <div class="mc-value" id="dsa-hard-solved">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Preloaded DSA Topic Hierarchy -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2 class="panel-title">DSA Preloaded Topic Structure</h2>
+              <span class="badge-sub font-mono">21 Topics</span>
+            </div>
+            <div class="dsa-topics-list" id="dsa-topics-list">
+              <!-- Dynamically loaded -->
+            </div>
+          </div>
+
+          <!-- Problem Log History -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2 class="panel-title">Recent Problem Logs</h2>
+              <span class="badge-sub font-mono" id="dsa-logs-count">0 logs</span>
+            </div>
+            <div class="dsa-logs-container" id="dsa-logs-list">
+              <div class="empty-state">
+                <div class="empty-icon">📝</div>
+                <p>No DSA problems logged yet.</p>
+                <span class="empty-sub">Click "+ Log Solved Problem" to record your progress.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 4. DEVELOPMENT ROADMAP -->
+      <section class="view-panel" id="view-dev">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Software Engineering</span>
+            <h1 class="page-title">Development Learning Roadmap</h1>
+            <p class="page-subtitle">7 Modular stacks (Programming, Frontend, Backend, DB, Tools, Cloud, System Design).</p>
+          </div>
+          <div class="header-actions">
+            <div class="filter-pills" id="dev-filter-status">
+              <button class="pill-btn is-active" data-status="ALL">All Topics</button>
+              <button class="pill-btn" data-status="NOT_STARTED">Not Started</button>
+              <button class="pill-btn" data-status="IN_PROGRESS">In Progress</button>
+              <button class="pill-btn" data-status="COMPLETED">Completed</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dev-categories-grid" id="dev-roadmap-container">
+          <!-- Dynamically loaded Dev categories and items -->
+        </div>
+      </section>
+
+
+      <!-- 5. AI / ML TRACKER -->
+      <section class="view-panel" id="view-aiml">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Artificial Intelligence</span>
+            <h1 class="page-title">AI / ML &amp; GenAI Roadmap</h1>
+            <p class="page-subtitle">34 Specialization topics from Python to RAG, Vector DBs, &amp; AI Agents.</p>
+          </div>
+          <div class="header-actions">
+            <div class="progress-indicator">
+              <span class="pi-label">Overall Progress:</span>
+              <strong class="font-mono" id="aiml-overall-pct">0% (0 / 34)</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="aiml-grid" id="aiml-topics-grid">
+            <!-- 34 topics rendered dynamically -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 6. CS FUNDAMENTALS -->
+      <section class="view-panel" id="view-cs">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Computer Science Core</span>
+            <h1 class="page-title">CS Fundamentals Roadmap</h1>
+            <p class="page-subtitle">8 Core Subjects with 5-stage tracking (Learn, Notes, Practice, Revise, Interview Qs).</p>
+          </div>
+        </div>
+
+        <div class="cs-subjects-grid" id="cs-subjects-container">
+          <!-- 8 subjects rendered dynamically -->
+        </div>
+      </section>
+
+
+      <!-- 7. COMMUNICATION TRACKER -->
+      <section class="view-panel" id="view-comm">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Soft Skills &amp; Interviews</span>
+            <h1 class="page-title">Communication &amp; Interview Prep</h1>
+            <p class="page-subtitle">9 Skill activities for interview readiness, GD, and articulate explanations.</p>
+          </div>
+          <div class="header-actions">
+            <div class="progress-indicator">
+              <span class="pi-label">Completed Skills:</span>
+              <strong class="font-mono" id="comm-completed-count">0 / 9</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="comm-checklist-grid" id="comm-checklist-container">
+            <!-- 9 communication skills -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 8. GYM & WORKOUT TRACKER -->
+      <section class="view-panel" id="view-gym">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Health &amp; Fitness</span>
+            <h1 class="page-title">Gym &amp; Fitness Tracker</h1>
+            <p class="page-subtitle">Daily health habits checklist + Full workout set logger.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="open-workout-modal">+ Log Workout Session</button>
+          </div>
+        </div>
+
+        <!-- Daily Health Checkins -->
+        <div class="panel-card margin-bottom">
+          <h2 class="panel-title">Today's Health &amp; Gym Habits</h2>
+          <div class="gym-habits-row" id="gym-daily-habits">
+            <!-- 4 Gym daily habit checkboxes -->
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Workout Categories -->
+          <div class="panel-card">
+            <h2 class="panel-title">Preloaded Workout Categories</h2>
+            <div class="gym-categories-list" id="gym-categories-list">
+              <!-- Push, Pull, Legs, Chest, Back, Shoulders, Arms, Core, Cardio -->
+            </div>
+          </div>
+
+          <!-- Workout Log History -->
+          <div class="panel-card">
+            <div class="panel-header">
+              <h2 class="panel-title">Logged Workout History</h2>
+              <span class="badge-sub font-mono" id="gym-session-count">0 Sessions</span>
+            </div>
+            <div class="workout-logs-list" id="gym-workout-logs">
+              <div class="empty-state">
+                <div class="empty-icon">🏋️‍♂️</div>
+                <p>No workout sessions logged yet.</p>
+                <span class="empty-sub">Click "+ Log Workout Session" to enter your exercises, sets, and weights.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 9. PROJECT TRACKER -->
+      <section class="view-panel" id="view-projects">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Portfolio &amp; Coding</span>
+            <h1 class="page-title">Project Portfolio Tracker</h1>
+            <p class="page-subtitle">5 Preloaded templates + Custom projects. Status starts at IDEA (0%).</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="open-project-modal">+ Add Custom Project</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-container">
+          <!-- Preloaded templates + user custom projects -->
+        </div>
+      </section>
+
+
+      <!-- 10. INTERNSHIP TRACKER -->
+      <section class="view-panel" id="view-internships">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Career Pipeline</span>
+            <h1 class="page-title">Internship &amp; Job Applications</h1>
+            <p class="page-subtitle">Track companies, interview stages, OAs, and outcomes. Starts empty.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="open-internship-modal">+ Add Application</button>
+          </div>
+        </div>
+
+        <div class="panel-card no-padding overflow-hidden">
+          <div class="table-responsive">
+            <table class="data-table" id="internships-table">
+              <thead>
+                <tr>
+                  <th>Company</th>
+                  <th>Role</th>
+                  <th>Applied Date</th>
+                  <th>Deadline</th>
+                  <th>Status</th>
+                  <th>Notes</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="internships-tbody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 11. GOALS VIEW -->
+      <section class="view-panel" id="view-goals">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Targets &amp; Milestones</span>
+            <h1 class="page-title">Goals &amp; Objectives</h1>
+            <p class="page-subtitle">10 Preloaded goal templates. Set targets, deadlines, and log progress.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="open-goal-modal">+ Add Custom Goal</button>
+          </div>
+        </div>
+
+        <div class="goals-grid" id="goals-container">
+          <!-- 10 goal templates -->
+        </div>
+      </section>
+
+
+      <!-- 12. CALENDAR VIEW -->
+      <section class="view-panel" id="view-calendar">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Historical Heatmap</span>
+            <h1 class="page-title">Calendar &amp; Consistency</h1>
+            <p class="page-subtitle">View daily completion rates across the calendar. Starts at 0%.</p>
+          </div>
+          <div class="header-actions">
+            <div class="month-picker">
+              <button class="btn btn-icon" id="cal-prev-month">‹</button>
+              <span class="month-picker-label" id="cal-month-label">September 2026</span>
+              <button class="btn btn-icon" id="cal-next-month">›</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="cal-days-header">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+          </div>
+          <div class="cal-grid-body" id="calendar-grid">
+            <!-- Calendar day cards generated dynamically -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 13. STATISTICS VIEW -->
+      <section class="view-panel" id="view-statistics">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Real Analytics</span>
+            <h1 class="page-title">System Statistics</h1>
+            <p class="page-subtitle">All metrics are calculated strictly from your manual entries.</p>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="mc-icon text-accent">🧩</div>
+            <div class="mc-data">
+              <span class="mc-title">DSA Solved</span>
+              <div class="mc-value" id="stat-dsa-val">0</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-blue">⏱️</div>
+            <div class="mc-data">
+              <span class="mc-title">Study Hours</span>
+              <div class="mc-value" id="stat-hours-val">0.0</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-orange">🔥</div>
+            <div class="mc-data">
+              <span class="mc-title">Habit Consistency</span>
+              <div class="mc-value" id="stat-habit-pct">0%</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-green">🏋️‍♂️</div>
+            <div class="mc-data">
+              <span class="mc-title">Gym Sessions</span>
+              <div class="mc-value" id="stat-gym-val">0</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-purple">🚀</div>
+            <div class="mc-data">
+              <span class="mc-title">Projects Done</span>
+              <div class="mc-value" id="stat-projects-val">0</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-icon text-yellow">💼</div>
+            <div class="mc-data">
+              <span class="mc-title">Internships Applied</span>
+              <div class="mc-value" id="stat-internships-val">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div class="panel-card">
+            <h2 class="panel-title">Habit Category Breakdown</h2>
+            <div class="category-breakdown-list" id="stat-category-breakdown">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+          <div class="panel-card">
+            <h2 class="panel-title">Activity Insights</h2>
+            <div class="insights-container" id="stat-insights-list">
+              <!-- Pure real data statements -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- 14. SETTINGS & RESET VIEW -->
+      <section class="view-panel" id="view-settings">
+        <div class="page-header">
+          <div>
+            <span class="badge-tag">Control Panel</span>
+            <h1 class="page-title">Settings &amp; System Reset</h1>
+            <p class="page-subtitle">Manage preferences and clear tracking data without losing preloaded templates.</p>
+          </div>
+        </div>
+
+        <div class="panel-card margin-bottom">
+          <h2 class="panel-title">Appearance &amp; Theme</h2>
+          <div class="settings-row">
+            <div>
+              <strong class="settings-label">Dark Mode Interface</strong>
+              <p class="settings-desc">Switch between deep dark workspace and crisp light mode.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="settings-dark-toggle" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-card border-danger">
+          <div class="danger-header">
+            <span class="danger-icon">⚠️</span>
+            <div>
+              <h2 class="panel-title text-danger">Reset All Progress Data</h2>
+              <p class="settings-desc">Deletes all check-ins, study hours, streaks, DSA logs, workout logs, internship applications, and goals progress.</p>
+              <p class="text-sub mt-1"><strong>KEEPS:</strong> Habit names, DSA topics, Dev roadmap, AI/ML roadmap, CS fundamentals structure, Gym categories, Project templates.</p>
+            </div>
+          </div>
+          <div class="settings-actions mt-3">
+            <button class="btn btn-danger btn-lg" id="reset-progress-btn">RESET MY PROGRESS</button>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /view-container -->
+  </main>
+</div>
+
+
+<!-- ==================== MODAL DIALOGS ==================== -->
+
+<!-- 1. LOG STUDY HOURS MODAL -->
+<div class="modal-backdrop hidden" id="modal-study">
+  <div class="modal-box modal-sm">
+    <div class="modal-head">
+      <h3>Log Study / Deep Work Hours</h3>
+      <button class="modal-close" data-close="modal-study">✕</button>
+    </div>
+    <form id="form-study">
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="study-date-input" required>
+      </div>
+      <div class="form-group">
+        <label>Hours Spent</label>
+        <input type="number" id="study-hours-input" step="0.5" min="0.5" max="24" placeholder="e.g. 3.5" required>
+      </div>
+      <div class="form-group">
+        <label>Notes / Focus Area</label>
+        <input type="text" id="study-notes-input" placeholder="e.g. Dynamic Programming &amp; React hooks">
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-study">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Log</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 2. ADD HABIT MODAL -->
+<div class="modal-backdrop hidden" id="modal-habit">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Add Custom Habit</h3>
+      <button class="modal-close" data-close="modal-habit">✕</button>
+    </div>
+    <form id="form-habit">
+      <div class="form-group">
+        <label>Habit Name</label>
+        <input type="text" id="habit-name-input" placeholder="e.g. Solve 1 LeetCode Hard" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Category</label>
+          <select id="habit-category-input">
+            <option value="Coding">Coding</option>
+            <option value="Learning">Learning</option>
+            <option value="Career">Career</option>
+            <option value="Communication">Communication</option>
+            <option value="Fitness">Fitness</option>
+            <option value="Mindfulness">Mindfulness</option>
+            <option value="Personal">Personal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Icon</label>
+          <input type="text" id="habit-icon-input" value="⚡" maxlength="2" style="width:70px; text-align:center;">
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-habit">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Habit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 3. LOG DSA PROBLEM MODAL -->
+<div class="modal-backdrop hidden" id="modal-dsa">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Log Solved DSA Problem</h3>
+      <button class="modal-close" data-close="modal-dsa">✕</button>
+    </div>
+    <form id="form-dsa">
+      <div class="form-group">
+        <label>Topic</label>
+        <select id="dsa-topic-select" required>
+          <!-- Dynamic 21 topics -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Problem Title</label>
+        <input type="text" id="dsa-title-input" placeholder="e.g. 3Sum / Two Sum" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Difficulty</label>
+          <select id="dsa-diff-select">
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
+        <div class="form-group col-grow">
+          <label>Date Solved</label>
+          <input type="date" id="dsa-date-input" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Notes / Solution Key Takeaways</label>
+        <input type="text" id="dsa-notes-input" placeholder="Two pointer approach with duplicate skipping">
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-dsa">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Problem</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 4. LOG WORKOUT MODAL -->
+<div class="modal-backdrop hidden" id="modal-workout">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Log Gym Workout Session</h3>
+      <button class="modal-close" data-close="modal-workout">✕</button>
+    </div>
+    <form id="form-workout">
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Category</label>
+          <select id="workout-cat-select">
+            <option value="Push">Push</option>
+            <option value="Pull">Pull</option>
+            <option value="Legs">Legs</option>
+            <option value="Chest">Chest</option>
+            <option value="Back">Back</option>
+            <option value="Shoulders">Shoulders</option>
+            <option value="Arms">Arms</option>
+            <option value="Core">Core</option>
+            <option value="Cardio">Cardio</option>
+          </select>
+        </div>
+        <div class="form-group col-grow">
+          <label>Exercise Name</label>
+          <input type="text" id="workout-ex-input" placeholder="e.g. Bench Press" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Sets</label>
+          <input type="number" id="workout-sets-input" min="1" value="4" required>
+        </div>
+        <div class="form-group">
+          <label>Reps</label>
+          <input type="number" id="workout-reps-input" min="1" value="10" required>
+        </div>
+        <div class="form-group">
+          <label>Weight (kg)</label>
+          <input type="number" id="workout-weight-input" min="0" step="0.5" placeholder="60">
+        </div>
+        <div class="form-group">
+          <label>Duration (min)</label>
+          <input type="number" id="workout-dur-input" min="0" placeholder="45">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Notes</label>
+        <input type="text" id="workout-notes-input" placeholder="Felt strong on last set">
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-workout">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Session</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 5. ADD INTERNSHIP APPLICATION MODAL -->
+<div class="modal-backdrop hidden" id="modal-internship">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Add Internship Application</h3>
+      <button class="modal-close" data-close="modal-internship">✕</button>
+    </div>
+    <form id="form-internship">
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Company Name</label>
+          <input type="text" id="app-company-input" placeholder="e.g. Google / Microsoft" required>
+        </div>
+        <div class="form-group col-grow">
+          <label>Role</label>
+          <input type="text" id="app-role-input" placeholder="e.g. SDE Intern" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Application Date</label>
+          <input type="date" id="app-date-input" required>
+        </div>
+        <div class="form-group col-grow">
+          <label>Deadline (Optional)</label>
+          <input type="date" id="app-deadline-input">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Status</label>
+          <select id="app-status-select">
+            <option value="Applied">Applied</option>
+            <option value="OA Received">OA Received</option>
+            <option value="OA Completed">OA Completed</option>
+            <option value="Technical Interview">Technical Interview</option>
+            <option value="HR Interview">HR Interview</option>
+            <option value="Offer Extended">Offer Extended</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Notes</label>
+        <input type="text" id="app-notes-input" placeholder="Applied via referral code ABC">
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-internship">Cancel</button>
+        <button type="submit" class="btn btn-primary">Add Application</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 6. ADD / EDIT GOAL MODAL -->
+<div class="modal-backdrop hidden" id="modal-goal">
+  <div class="modal-box modal-sm">
+    <div class="modal-head">
+      <h3>Add Custom Goal</h3>
+      <button class="modal-close" data-close="modal-goal">✕</button>
+    </div>
+    <form id="form-goal">
+      <div class="form-group">
+        <label>Goal Name</label>
+        <input type="text" id="goal-title-input" placeholder="e.g. Solve 200 LeetCode Problems" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Target Value</label>
+          <input type="number" id="goal-target-input" min="1" value="10" required>
+        </div>
+        <div class="form-group col-grow">
+          <label>Current Value</label>
+          <input type="number" id="goal-current-input" min="0" value="0" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Deadline</label>
+        <input type="date" id="goal-deadline-input">
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-goal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Goal</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 7. ADD PROJECT MODAL -->
+<div class="modal-backdrop hidden" id="modal-project">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Add Custom Project</h3>
+      <button class="modal-close" data-close="modal-project">✕</button>
+    </div>
+    <form id="form-project">
+      <div class="form-group">
+        <label>Project Title</label>
+        <input type="text" id="proj-title-input" placeholder="e.g. AI Code Review Bot" required>
+      </div>
+      <div class="form-group">
+        <label>Tech Stack</label>
+        <input type="text" id="proj-tech-input" placeholder="e.g. React, Node.js, OpenAI API">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-grow">
+          <label>Status</label>
+          <select id="proj-status-select">
+            <option value="IDEA">IDEA</option>
+            <option value="IN_PROGRESS">IN PROGRESS</option>
+            <option value="COMPLETED">COMPLETED</option>
+          </select>
+        </div>
+        <div class="form-group col-grow">
+          <label>Progress %</label>
+          <input type="number" id="proj-pct-input" min="0" max="100" value="0">
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" data-close="modal-project">Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- RESET CONFIRMATION MODAL -->
+<div class="modal-backdrop hidden" id="modal-reset-confirm">
+  <div class="modal-box modal-sm border-danger">
+    <div class="modal-head">
+      <h3 class="text-danger">⚠️ Confirm Reset</h3>
+      <button class="modal-close" data-close="modal-reset-confirm">✕</button>
+    </div>
+    <div class="p-3">
+      <p>Are you strictly sure you want to <strong>RESET ALL PROGRESS DATA</strong>?</p>
+      <p class="text-sub mt-2">This will wipe all checkmarks, study hours, problem logs, gym entries, internship applications, and streaks back to zero.</p>
+    </div>
+    <div class="modal-foot">
+      <button type="button" class="btn btn-ghost" data-close="modal-reset-confirm">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirm-reset-btn">Yes, Reset Everything to 0</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast-notification" id="toast-el"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
